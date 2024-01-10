@@ -51,7 +51,6 @@ const App: Component = () => {
               <div class="flex text-lg justify-between flex-col p-4 space-y-4 h-full text-stack-700 w-96">
                 <GameInfo />
                 <GameBoard />
-                {/* <Keyboard /> */}
                 {game.guesses?.includes(game.today_word) ? (
                   <></>
                 ) : (

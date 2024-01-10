@@ -47,7 +47,11 @@ function GameBoard() {
             ? "enter a word"
             : game.input
         }
-        number={game.guesses.length + 1}
+        number={
+          game.guesses.includes(game.today_word)
+            ? game.guesses.length
+            : game.guesses.length + 1
+        }
         location={
           game.guesses.includes(game.today_word)
             ? WordLocation.correct
@@ -70,6 +74,7 @@ function GameBoard() {
 
 function Word(props: { number: number; word: string; location: WordLocation }) {
   const [game, set_game] = useGame();
+
   return (
     <li
       classList={{ "text-mallard-700": props.location == WordLocation.correct }}
