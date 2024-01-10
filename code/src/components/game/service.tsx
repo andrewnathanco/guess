@@ -34,7 +34,7 @@ export function get_countdown_till_next_game(): string {
 
 export function get_game_key() {
   const now: Date = new Date();
-  const specificDate: Date = new Date(2024, 0, 9, 5, 0, 0);
+  const specificDate: Date = new Date(2024, 0, 7, 5, 0, 0);
   const duration: number =
     (now.getTime() - specificDate.getTime()) / (1000 * 60 * 60 * 24);
 

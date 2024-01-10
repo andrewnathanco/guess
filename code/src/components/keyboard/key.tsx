@@ -13,8 +13,10 @@ function Key(props: { letter: string }) {
     <button
       class="w-8 h-16 rounded-lg cursor-pointer border-2 bg-stack-400 border-stack-400 text-sun-50"
       onclick={() => {
-        let new_input = `${game.input ?? ""}${letter.toLowerCase()}`
-        set_game("input", new_input )
+        if (!game.guesses.includes(game.today_word)) {
+          let new_input = `${game.input ?? ""}${letter.toLowerCase()}`;
+          set_game("input", new_input);
+        }
       }}
     >
       {letter}
