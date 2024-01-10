@@ -39,23 +39,21 @@ function GameBoard() {
         );
       })}
       <div class="text-sm">before</div>
-      <div id="guess-input">
-        <Word
-          word={
-            game.guesses.includes(game.today_word)
-              ? game.today_word
-              : game.input == ""
-              ? "enter a word"
-              : game.input
-          }
-          number={game.guesses.length + 1}
-          location={
-            game.guesses.includes(game.today_word)
-              ? WordLocation.correct
-              : WordLocation.input
-          }
-        />
-      </div>
+      <Word
+        word={
+          game.guesses.includes(game.today_word)
+            ? game.today_word
+            : game.input == ""
+            ? "enter a word"
+            : game.input
+        }
+        number={game.guesses.length + 1}
+        location={
+          game.guesses.includes(game.today_word)
+            ? WordLocation.correct
+            : WordLocation.input
+        }
+      />
       <div class="text-sm">after</div>
       {after_words().map((word) => {
         return (
@@ -71,10 +69,11 @@ function GameBoard() {
 }
 
 function Word(props: { number: number; word: string; location: WordLocation }) {
+  const [game, set_game] = useGame();
   return (
     <li
       classList={{ "text-mallard-700": props.location == WordLocation.correct }}
-      class="flex space-x-4 justify-center items-center"
+      class="flex space-x-4 justify-center items-center "
     >
       <div
         classList={{
@@ -84,14 +83,27 @@ function Word(props: { number: number; word: string; location: WordLocation }) {
       >
         {props.number}
       </div>
-      <div
-        classList={{
-          "text-4xl": props.location == WordLocation.input,
-          "text-5xl": props.location == WordLocation.correct,
-        }}
-      >
-        {props.word}
-      </div>
+      {props.location == WordLocation.input ? (
+        <input
+          class="text-4xl rounded-lg bg-transparent max-w-64 p-2 placeholder:text-stack-700 border-transparent !outline-none"
+          id="guess-input"
+          value={game.input}
+          autofocus
+          oninput={(e) => {
+            e.preventDefault();
+            set_game("input", e.target.value);
+          }}
+          placeholder="input a word"
+        />
+      ) : (
+        <div
+          classList={{
+            "text-5xl": props.location == WordLocation.correct,
+          }}
+        >
+          {props.word}
+        </div>
+      )}
     </li>
   );
 }

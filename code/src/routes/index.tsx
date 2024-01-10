@@ -14,6 +14,7 @@ import { InfoDialog } from "../components/info_dialog/dialog";
 import Keyboard from "../components/keyboard/keyboard";
 import { SessionProvider, useSession } from "../components/session/context";
 import { get_default_session } from "../components/session/service";
+import SubmitButton from "../components/game_board/submit";
 
 const App: Component = () => {
   // dialog context
@@ -50,7 +51,12 @@ const App: Component = () => {
               <div class="flex text-lg justify-between flex-col p-4 space-y-4 h-full text-stack-700 w-96">
                 <GameInfo />
                 <GameBoard />
-                <Keyboard />
+                {/* <Keyboard /> */}
+                {game.guesses?.includes(game.today_word) ? (
+                  <></>
+                ) : (
+                  <SubmitButton />
+                )}
                 <InfoDialog />
               </div>
             </div>
