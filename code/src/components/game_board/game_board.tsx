@@ -91,7 +91,7 @@ function Word(props: { number: number; word: string; location: WordLocation }) {
           autofocus
           oninput={(e) => {
             e.preventDefault();
-            set_game("input", e.target.value);
+            set_game("input", e.target.value.trim());
           }}
           placeholder="input a word"
         />
