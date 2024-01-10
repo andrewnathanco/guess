@@ -47,7 +47,7 @@ const App: Component = () => {
       <InfoDialogProvider>
         <GameProvider>
           <SessionProvider>
-            <div class="w-full flex h-full flex-col justify-center items-center">
+            <div class="w-full flex flex-col h-full justify-center items-center">
               <div class="flex text-lg justify-between flex-col p-4 space-y-4 h-full text-stack-700 w-96">
                 <GameInfo />
                 <GameBoard />

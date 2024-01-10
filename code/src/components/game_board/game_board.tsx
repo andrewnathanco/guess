@@ -28,7 +28,7 @@ function GameBoard() {
       .toSorted();
 
   return (
-    <ul class="flex flex-1 overflow-y-auto p-4 flex-col w-full text-2xl justify-center items-start lowercase space-y-2 no-scrollbar no-scrollbar::-webkit-scrollbar">
+    <ul class="flex flex-col overflow-y-auto p-4 w-full text-2xl justify-start items-start lowercase space-y-2 no-scrollbar no-scrollbar::-webkit-scrollbar">
       {before_words().map((word) => {
         return (
           <Word
