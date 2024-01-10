@@ -26,7 +26,7 @@ export function InfoDialog() {
       }}
     >
       <div class="z-10 absolute top-0 left-0 right-0 bottom-0 justify-center items-center bg-black flex opacity-70"></div>
-      <div class="z-20 absolute top-0 left-0 right-0 bottom-0 bg-sun-50 flex m-4 rounded-lg">
+      <div class="z-20 absolute top-0 left-0 right-0 bottom-0 bg-cotton-300 flex m-4 rounded-lg">
         <div id="dialog-content" class="p-8 flex flex-col space-y-2 w-full">
           <div
             id="dialog-header"
@@ -56,14 +56,15 @@ export function InfoDialog() {
             <div class="flex flex-col">
               <div class="text-xl">What is Guess?</div>
               <div class="text-md">
-                Guess is a daily puzzle game where you have guess what word the computer is thinking of. Puzzle refreshes daily at
-                12:00AM EST.
+                Guess is a daily puzzle game where you have guess what word the
+                computer is thinking of. Puzzle refreshes daily at 12:00AM EST.
               </div>
             </div>
             <div class="flex flex-col">
               <div class="text-xl">How to play?</div>
               <div class="text-md">
-                Everytime you guess a word the game will tell you if your word is alphabetically before or after the computer's word. 
+                Everytime you guess a word the game will tell you if your word
+                is alphabetically before or after the computer's word.
               </div>
             </div>
           </div>

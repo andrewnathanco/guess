@@ -6,7 +6,7 @@
 html,
 body,
 #app {
-  @apply h-full bg-sun-50 font-semibold;
+  @apply h-full bg-cotton-300 font-semibold text-cotton-900;
   scroll-behavior: smooth;
   touch-action: manipulation;
   font-family: "Onest", sans-serif;

@@ -73,12 +73,12 @@ function GameBoard() {
 function Word(props: { number: number; word: string; location: WordLocation }) {
   return (
     <li
-      classList={{ "text-mallard-500": props.location == WordLocation.correct }}
+      classList={{ "text-mallard-700": props.location == WordLocation.correct }}
       class="flex space-x-4 justify-center items-center"
     >
       <div
         classList={{
-          "text-lg": props.location == WordLocation.correct,
+          "text-xl": props.location == WordLocation.correct,
           "text-sm": props.location != WordLocation.correct,
         }}
       >

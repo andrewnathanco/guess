@@ -1,21 +1,19 @@
+import { Meta } from "@solidjs/meta";
 import {
-  type Component,
-  createSignal,
   createContext,
   createEffect,
+  createSignal,
+  type Component,
 } from "solid-js";
-import { GameInfo } from "../components/game/view";
 import { GameProvider, useGame } from "../components/game/context";
-import { SessionProvider, useSession } from "../components/session/context";
-import { Meta } from "@solidjs/meta";
 import { get_game_key, get_todays_game } from "../components/game/service";
-import { get_default_session } from "../components/session/service";
-import { GameInfoDialogProvider } from "../components/game_info_dialog/context";
-import { GameInfoDialog } from "../components/game_info_dialog/dialog";
+import { GameInfo } from "../components/game/view";
+import { GameBoard } from "../components/game_board/game_board";
 import { InfoDialogProvider } from "../components/info_dialog/context";
 import { InfoDialog } from "../components/info_dialog/dialog";
 import Keyboard from "../components/keyboard/keyboard";
-import { GameBoard } from "../components/game_board/game_board";
+import { SessionProvider, useSession } from "../components/session/context";
+import { get_default_session } from "../components/session/service";
 
 const App: Component = () => {
   // dialog context
@@ -48,17 +46,14 @@ const App: Component = () => {
       <InfoDialogProvider>
         <GameProvider>
           <SessionProvider>
-            <GameInfoDialogProvider>
-              <div class="w-full flex h-full flex-col justify-center items-center">
-                <div class="flex text-lg justify-between flex-col p-4 space-y-4 h-full text-stack-700 w-96">
-                  <GameInfo />
-                  <GameBoard />
-                  <Keyboard />
-                  <GameInfoDialog />
-                  <InfoDialog />
-                </div>
+            <div class="w-full flex h-full flex-col justify-center items-center">
+              <div class="flex text-lg justify-between flex-col p-4 space-y-4 h-full text-stack-700 w-96">
+                <GameInfo />
+                <GameBoard />
+                <Keyboard />
+                <InfoDialog />
               </div>
-            </GameInfoDialogProvider>
+            </div>
           </SessionProvider>
         </GameProvider>
       </InfoDialogProvider>
