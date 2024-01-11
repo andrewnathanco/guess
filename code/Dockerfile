@@ -1,4 +1,6 @@
 FROM node:20-slim AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 COPY . /app
 WORKDIR /app
@@ -18,9 +20,7 @@ ENV VITE_BASE_URL=${BASE_URL}
 ARG SHARE_URL
 ENV VITE_SHARE_URL=${SHARE_URL}
 
-RUN pnpm install h3@latest --shamefully-hoist
-RUN pnpm install
-RUN pnpm --version
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install
 RUN pnpm run build
 
 FROM base
