@@ -21,7 +21,7 @@ ENV VITE_BASE_URL=${BASE_URL}
 ARG SHARE_URL
 ENV VITE_SHARE_URL=${SHARE_URL}
 
-RUN --mount=type=cache,id=pnpm install
+RUN pnpm install
 RUN pnpm --version
 RUN pnpm run build
 
