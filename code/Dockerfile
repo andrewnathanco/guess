@@ -19,9 +19,9 @@ ARG SHARE_URL
 ENV VITE_SHARE_URL=${SHARE_URL}
 
 RUN corepack prepare pnpm@8.12.1 --activate
-RUN pnpm install
-RUN pnpm --version
-RUN pnpm run build
+RUN npm install
+RUN npm --version
+RUN npm run build
 
 FROM base
 COPY --from=build /app/node_modules /app/node_modules
