@@ -41,8 +41,6 @@ export default function Button() {
           onclick={() => {
             const [text, url] = get_share(game);
 
-            console.log(text, url);
-
             try {
               navigator.share({
                 text,
