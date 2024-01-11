@@ -18,7 +18,7 @@ ENV VITE_BASE_URL=${BASE_URL}
 ARG SHARE_URL
 ENV VITE_SHARE_URL=${SHARE_URL}
 
-RUN corepack prepare pnpm@8.11.0 --activate
+RUN corepack prepare pnpm@8.12.1 --activate
 RUN pnpm install
 RUN pnpm --version
 RUN pnpm run build

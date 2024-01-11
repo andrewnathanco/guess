@@ -7,7 +7,7 @@
     "build": "vinxi build",
     "start": "vinxi start"
   },
-  "packageManager": "pnpm@8.11.0",
+  "packageManager": "pnpm@8.12.1",
   "dependencies": {
     "@solid-primitives/storage": "^2.1.1",
     "@solidjs/meta": "^0.29.3",
