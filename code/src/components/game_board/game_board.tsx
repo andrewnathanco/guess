@@ -1,6 +1,5 @@
 import { createEffect } from "solid-js";
 import { useGame } from "../game/context";
-import { useSession } from "../session/context";
 
 enum WordLocation {
   before,
@@ -11,7 +10,6 @@ enum WordLocation {
 
 function GameBoard() {
   const [game, _] = useGame();
-  const [session, __] = useSession();
 
   const before_words = () =>
     game.guesses

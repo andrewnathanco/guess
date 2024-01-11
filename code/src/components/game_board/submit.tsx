@@ -1,8 +1,9 @@
 import { useGame } from "../game/context";
 import words from "../../util/valid_words.json";
 import { createEffect, onCleanup } from "solid-js";
+import { get_share } from "../session/service";
 
-export default function SubmitButton() {
+export default function Button() {
   const [game, set_game] = useGame();
 
   const submit_word = () => {
@@ -34,25 +35,51 @@ export default function SubmitButton() {
   });
 
   return (
-    <button
-      disabled={game.input == "" || !words.includes(game.input)}
-      onclick={() => {
-        submit_word();
-      }}
-      classList={{
-        "border-stone-500 bg-stone-500 text-stone-300": game.input == "",
-        "border-stone-700 bg-stone-700 text-sun-50": words.includes(game.input),
-        "border-stiletto-700 bg-stiletto-700 text-sun-50": !words.includes(
-          game.input
-        ),
-      }}
-      class="border-2 rounded-lg w-full p-2 flex items-center justify-center space-x-2"
-    >
-      <div>
-        {!words.includes(game.input) && game.input != ""
-          ? "Invalid word"
-          : "Submit"}
-      </div>
-    </button>
+    <>
+      {words.includes(game.today_word) ? (
+        <button
+          onclick={() => {
+            const [text, url] = get_share(game);
+
+            console.log(text, url);
+
+            try {
+              navigator.share({
+                text,
+                url,
+              });
+            } catch {
+              navigator.clipboard.writeText(`${text}\n${url}`);
+            }
+          }}
+          class="border-2 rounded-lg w-full p-2 flex items-center justify-center space-x-2 border-mallard-700 bg-mallard-700 text-sun-50"
+        >
+          <div>Share</div>
+        </button>
+      ) : (
+        <button
+          disabled={game.input == "" || !words.includes(game.input)}
+          onclick={() => {
+            submit_word();
+          }}
+          classList={{
+            "border-stone-500 bg-stone-500 text-stone-300": game.input == "",
+            "border-stone-700 bg-stone-700 text-sun-50": words.includes(
+              game.input
+            ),
+            "border-stiletto-700 bg-stiletto-700 text-sun-50": !words.includes(
+              game.input
+            ),
+          }}
+          class="border-2 rounded-lg w-full p-2 flex items-center justify-center space-x-2"
+        >
+          <div>
+            {!words.includes(game.input) && game.input != ""
+              ? "Invalid word"
+              : "Submit"}
+          </div>
+        </button>
+      )}
+    </>
   );
 }
