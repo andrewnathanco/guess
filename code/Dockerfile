@@ -18,9 +18,10 @@ ENV VITE_BASE_URL=${BASE_URL}
 ARG SHARE_URL
 ENV VITE_SHARE_URL=${SHARE_URL}
 
-RUN npm install
-RUN npm --version
-RUN npm run build
+RUN pnpm install h3@latest --shamefully-hoist
+RUN pnpm install
+RUN pnpm --version
+RUN pnpm run build
 
 FROM base
 COPY --from=build /app/node_modules /app/node_modules
