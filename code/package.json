@@ -7,7 +7,6 @@
     "build": "vinxi build",
     "start": "vinxi start"
   },
-  "packageManager": "pnpm@8.12.1",
   "dependencies": {
     "@solid-primitives/storage": "^2.1.1",
     "@solidjs/meta": "^0.29.3",
@@ -16,6 +15,7 @@
     "@vitejs/plugin-basic-ssl": "^1.0.2",
     "autoprefixer": "^10.4.14",
     "csv-parse": "^5.5.2",
+    "h3": "^1.10.0",
     "postcss": "^8.4.26",
     "solid-js": "^1.8.10",
     "tailwindcss": "^3.3.3",
