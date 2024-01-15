@@ -74,25 +74,29 @@ export function GameInfo() {
           </svg>
         </button>
       </div>
-      <div class="flex flex-col space-y-1">
-        <ul class="flex space-x-1 items-center flex-wrap">
-          {alphabet.map((char) => {
-            return (
-              <li
-                classList={{
-                  "text-md text-timberwolf-500":
-                    !get_reference_alpha().includes(char.toLowerCase()),
-                  "text-2xl": get_reference_alpha().includes(
-                    char.toLowerCase()
-                  ),
-                }}
-              >
-                {char.toLowerCase()}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      {game.guesses.includes(game.today_word) ? (
+        <></>
+      ) : (
+        <div class="flex flex-col space-y-1">
+          <ul class="flex space-x-1 items-center flex-wrap">
+            {alphabet.map((char) => {
+              return (
+                <li
+                  classList={{
+                    "text-md text-timberwolf-500":
+                      !get_reference_alpha().includes(char.toLowerCase()),
+                    "text-2xl": get_reference_alpha().includes(
+                      char.toLowerCase()
+                    ),
+                  }}
+                >
+                  {char.toLowerCase()}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
