@@ -4,6 +4,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        timberwolf: {
+          50: "#f7f6f5",
+          100: "#edebe7",
+          200: "#dad7cd",
+          300: "#c3beae",
+          400: "#aaa18d",
+          500: "#998c76",
+          600: "#8c7e6a",
+          700: "#756859",
+          800: "#60564c",
+          900: "#4f473f",
+          950: "#2a2420",
+        },
         cotton: {
           50: "#fbf8f1",
           100: "#f5eddf",

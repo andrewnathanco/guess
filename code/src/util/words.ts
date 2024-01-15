@@ -1,109 +1,78 @@
-import { Tile, TileAuthor } from "../components/game_board/game_board";
 import words from "./valid_words.json";
 
-function get_available_letters(curr_word: string): string[] {
-  const letters = new Set<string>();
-  for (const word of words) {
-    if (word.toLowerCase().startsWith(curr_word.toLowerCase())) {
-      const avail_lett = word.toLowerCase().charAt(curr_word.length) || "";
-      letters.add(avail_lett);
+export const alphabet = [
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z",
+];
+
+const show = ["d", "e", "f"];
+
+function get_available_letters(word_a: string, word_b: string): string[] {
+  if (!word_a || !word_b) {
+    return alphabet;
+  }
+
+  const letters: string[] = [];
+  const larger_word = word_a.length >= word_b.length ? word_a : word_b;
+  const other_word = word_a.length >= word_b.length ? word_b : word_a;
+
+  console.log({ larger_word, other_word });
+
+  for (const larger_lett of larger_word) {
+    let other_lett = other_word[larger_word.indexOf(larger_lett)];
+
+    if (other_lett == larger_lett) {
+      continue;
+    }
+
+    let larger_lett_index = alphabet.indexOf(larger_lett);
+    let other_lett_index = alphabet.indexOf(other_lett);
+
+    let larger_alpha_index =
+      larger_lett_index >= other_lett_index
+        ? larger_lett_index
+        : other_lett_index;
+    let smaller_alpha_index =
+      larger_lett_index >= other_lett_index
+        ? other_lett_index
+        : larger_lett_index;
+
+    alphabet.forEach((lett, i) => {
+      if (i >= smaller_alpha_index && i <= larger_alpha_index) {
+        letters.push(lett);
+      }
+    });
+
+    if (other_lett != larger_lett) {
+      break;
     }
   }
 
   return Array.from(letters);
 }
 
-function get_tiles_from_computer(tiles: Tile[]): Tile[] {
-  // get only the ones based on current tiles
-  let current_word = tiles.map((tile) => tile.letter.toLowerCase()).join("");
-
-  // now get the possible answers
-  let all_possible: string[] = words.filter((word) =>
-    word.toLowerCase().startsWith(current_word)
-  );
-
-  let possible_answers_where_comp_wins: string[] = all_possible.filter(
-    (word) => {
-      return current_word.length % 2 === word.length % 2;
-    }
-  );
-
-  let comp_letter = "";
-
-  // now lets try to get back an answer that will give the computer the win
-  if (possible_answers_where_comp_wins.length > 0) {
-    const index: number = Math.floor(
-      Math.random() * possible_answers_where_comp_wins.length
-    );
-    const comp_word: string = possible_answers_where_comp_wins[index];
-
-    // at this point we already have a word
-    if (comp_word == current_word) {
-      return [];
-    }
-
-    // now grab that letter
-    comp_letter = comp_word.charAt(current_word.length) || "";
-    return [
-      {
-        letter: comp_letter,
-        author: TileAuthor.Computer,
-      },
-    ];
-  } else {
-    // this is the case where we don't have a word that would cause the computer to win
-    if (all_possible.length > 0) {
-      const index: number = Math.floor(Math.random() * all_possible.length);
-      const comp_word: string = all_possible[index];
-
-      if (comp_word == current_word) {
-        return [];
-      }
-      comp_letter = comp_word.charAt(current_word.length) || "";
-      return [
-        {
-          letter: comp_letter,
-          author: TileAuthor.Computer,
-        },
-      ];
-    }
-
-    return [];
-  }
-}
-
-function get_computer_word(tiles: Tile[]) {
-  // get only the ones based on current tiles
-  let current_word = tiles.map((tile) => tile.letter.toLowerCase()).join("");
-
-  // now get the possible answers
-  let all_possible: string[] = words.filter((word) =>
-    word.toLowerCase().startsWith(current_word)
-  );
-
-  let possible_answers_where_comp_wins: string[] = all_possible.filter(
-    (word) => {
-      return current_word.length % 2 === word.length % 2;
-    }
-  );
-
-  let comp_word = current_word;
-  // now lets try to get back an answer that will give the computer the win
-  if (possible_answers_where_comp_wins.length > 0) {
-    const index: number = Math.floor(
-      Math.random() * possible_answers_where_comp_wins.length
-    );
-
-    comp_word = possible_answers_where_comp_wins[index];
-  } else {
-    // this is the case where we don't have a word that would cause the computer to win
-    if (all_possible.length > 0) {
-      const index: number = Math.floor(Math.random() * all_possible.length);
-      comp_word = all_possible[index];
-    }
-  }
-
-  return comp_word;
-}
-
-export { get_available_letters, get_tiles_from_computer, get_computer_word };
+export { get_available_letters };

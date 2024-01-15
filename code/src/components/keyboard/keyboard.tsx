@@ -1,12 +1,10 @@
 import { createEffect, onCleanup } from "solid-js";
 import words from "../../util/valid_words.json";
 import { useGame } from "../game/context";
-import { useSession } from "../session/context";
 import { BottomKeys, MiddleKeys, TopKeys } from "./key";
 
 function Keyboard() {
   const [game, set_game] = useGame();
-  const [session, set_session] = useSession();
 
   const submit_word = () => {
     if (words.includes(game.input) && !game.guesses.includes(game.input)) {
@@ -95,46 +93,8 @@ function Keyboard() {
           </button>
         </div>
       </div>
-      {/* {game.guesses.includes(game.today_word) ? <ShareButton /> : <></>} */}
     </div>
   );
 }
-
-// function ShareButton() {
-//   const [game, _] = useGame();
-
-//   return (
-//     <button
-//       onclick={() => {
-//         const [text, url] = get_share(game);
-
-//         try {
-//           navigator.share({
-//             text,
-//             url,
-//           });
-//         } catch {
-//           navigator.clipboard.writeText(`${text}\n${url}`);
-//         }
-//       }}
-//       class="border-2 border-mallard-700 rounded-lg w-full p-2 text-sun-50 bg-mallard-700 flex items-center justify-center space-x-2"
-//     >
-//       <svg
-//         xmlns="http://www.w3.org/2000/svg"
-//         viewBox="0 0 24 24"
-//         fill="currentColor"
-//         class="w-6 h-6"
-//       >
-//         <path
-//           fill-rule="evenodd"
-//           d="M15.75 4.5a3 3 0 11.825 2.066l-8.421 4.679a3.002 3.002 0 010 1.51l8.421 4.679a3 3 0 11-.729 1.31l-8.421-4.678a3 3 0 110-4.132l8.421-4.679a3 3 0 01-.096-.755z"
-//           clip-rule="evenodd"
-//         ></path>
-//       </svg>
-
-//       <div>Share</div>
-//     </button>
-//   );
-// }
 
 export default Keyboard;
