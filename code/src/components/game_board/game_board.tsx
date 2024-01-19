@@ -36,7 +36,7 @@ function GameBoard() {
           />
         );
       })}
-      <div class="text-sm">before</div>
+      <div class="text-sm">before the secret word</div>
       <Word
         word={
           game.guesses.includes(game.today_word)
@@ -56,7 +56,7 @@ function GameBoard() {
             : WordLocation.input
         }
       />
-      <div class="text-sm">after</div>
+      <div class="text-sm">after the secret word</div>
       {after_words().map((word) => {
         return (
           <Word
