@@ -39,8 +39,14 @@ const App: Component = () => {
       />
       <InfoDialogProvider>
         <GameProvider>
-          <div class="w-full flex flex-col h-full justify-center items-center">
-            <div class="flex text-lg justify-between flex-col p-4 space-y-4 h-full text-stack-700 w-96">
+          <div class="flex h-full w-full flex-col items-center justify-center space-y-2 p-4">
+            <div class="rounded-lg p-4 border-2 border-stack-700 flex space-x-1 w-96">
+              <div>Play other daily games</div>
+              <a class="text-sun-700 underline" href="https://ancgames.com">
+                here.
+              </a>
+            </div>
+            <div class="text-stack-700 flex h-full w-96 flex-col justify-between space-y-4 p-4 text-lg">
               <GameInfo />
               <GameBoard />
               <Button />
