@@ -4,6 +4,7 @@ import { get_game_key, get_todays_game } from "./service";
 import { get_current_number_played } from "../../util/service";
 import { useInfoDialog } from "../info_dialog/context";
 import { alphabet, get_available_letters } from "../../util/words";
+import { ReferenceAlpha } from "./reference_alpha";
 
 export function GameInfo() {
   const [game, set_game] = useGame();
@@ -18,27 +19,6 @@ export function GameInfo() {
       set_game(get_todays_game());
     }
   });
-
-  const before_words = () =>
-    game.guesses
-      .filter((guess) => {
-        return guess < game.today_word;
-      })
-      .toSorted();
-
-  const after_words = () =>
-    game.guesses
-      .filter((guess) => {
-        return guess > game.today_word;
-      })
-      .toSorted();
-
-  const get_reference_alpha = () => {
-    return get_available_letters(
-      before_words()[before_words().length - 1],
-      after_words()[0]
-    );
-  };
 
   return (
     <div class="flex flex-col space-y-2">
@@ -74,29 +54,7 @@ export function GameInfo() {
           </svg>
         </button>
       </div>
-      {game.guesses.includes(game.today_word) ? (
-        <></>
-      ) : (
-        <div class="flex flex-col space-y-1">
-          <ul class="flex space-x-1 items-center flex-wrap">
-            {alphabet.map((char) => {
-              return (
-                <li
-                  classList={{
-                    "text-md text-timberwolf-500":
-                      !get_reference_alpha().includes(char.toLowerCase()),
-                    "text-2xl": get_reference_alpha().includes(
-                      char.toLowerCase()
-                    ),
-                  }}
-                >
-                  {char.toLowerCase()}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
+      <ReferenceAlpha />
     </div>
   );
 }

@@ -12,8 +12,9 @@ import { GameBoard } from "../components/game_board/game_board";
 import { InfoDialogProvider } from "../components/info_dialog/context";
 import { InfoDialog } from "../components/info_dialog/dialog";
 import Button from "../components/game_board/submit";
+import { ReferenceAlpha } from "../components/game/reference_alpha";
 
-const App: Component = () => {
+function App() {
   // dialog context
   let game_info_dialog = createSignal(false);
 
@@ -46,7 +47,7 @@ const App: Component = () => {
                 here.
               </a>
             </div>
-            <div class="text-stack-700 flex h-full w-96 flex-col justify-between space-y-4 p-4 text-lg">
+            <div class="text-stack-700 flex h-full w-96 flex-col justify-between p-4 text-lg">
               <GameInfo />
               <GameBoard />
               <Button />
@@ -57,6 +58,6 @@ const App: Component = () => {
       </InfoDialogProvider>
     </>
   );
-};
+}
 
 export default App;
