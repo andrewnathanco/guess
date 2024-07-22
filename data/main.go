@@ -8,6 +8,7 @@ import (
 	"math/rand"
 	"os"
 	"strconv"
+	"strings"
 
 	"github.com/samber/lo"
 )
@@ -72,6 +73,18 @@ func getWords() []string {
 
 	game_words = lo.Intersect[string](game_words, medium_common)
 	game_words, _ = lo.Difference[string](game_words, blacklist)
+	game_words = lo.Filter[string](game_words, func(item string, index int) bool {
+		return !(strings.HasSuffix(item, "es") ||
+			strings.HasSuffix(item, "ion") ||
+			strings.HasSuffix(item, "ing") ||
+			strings.HasSuffix(item, "ly") ||
+			strings.HasSuffix(item, "ity") ||
+			strings.HasSuffix(item, "ive") ||
+			strings.HasSuffix(item, "ed") ||
+			strings.HasSuffix(item, "or") ||
+			strings.HasSuffix(item, "able") ||
+			strings.HasSuffix(item, "s"))
+	})
 
 	r := rand.New(rand.NewSource(99))
 	r.Shuffle(len(game_words), func(i, j int) { game_words[i], game_words[j] = game_words[j], game_words[i] })
